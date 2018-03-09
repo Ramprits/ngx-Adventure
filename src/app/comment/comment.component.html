@@ -1,0 +1,20 @@
+<div class="container">
+  <button class="btn btn-primary btn-sm right" (click)="MyDocumemntPrint()">Print</button>
+  <br>
+  <p-table [value]="comments" [loading]="loading" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Body</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-comment>
+      <tr>
+        <td>{{comment.name}}</td>
+        <td>{{comment.email}}</td>
+        <td>{{comment.body}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
