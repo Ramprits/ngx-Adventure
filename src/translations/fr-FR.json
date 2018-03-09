@@ -13,5 +13,9 @@
   "Username or password incorrect.": "Identifiant ou mot de passe incorrect.",
   "Remember me": "Rester connecté",
   "Version": "Version",
-  "Comment": "Commentaire"
+  "Comment": "Commentaire",
+  "Name": "prénom",
+  "Email": "Email",
+  "Body": "Corps",
+  "Print": "Impression"
 }

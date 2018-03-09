@@ -13,5 +13,9 @@
   "Username or password incorrect.": "Username or password incorrect.",
   "Remember me": "Remember me",
   "Version": "Version",
-  "Comment": "Comment"
+  "Comment": "Comment",
+  "Name": "Name",
+  "Email": "Email",
+  "Body": "Body",
+  "Print":"Print"
 }
