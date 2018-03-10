@@ -7,6 +7,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
 import { NgProgressModule } from "ngx-progressbar";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { environment } from "@env/environment";
 import { CoreModule } from "@app/core";
@@ -19,6 +20,7 @@ import { AppRoutingModule } from "./app-routing.module";
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ServiceWorkerModule.register("/ngsw-worker.js", { enabled: environment.production }),
     FormsModule,
     HttpClientModule,
