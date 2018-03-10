@@ -5,14 +5,11 @@ import { Route } from "@app/core";
 const routes: Routes = [
   Route.withShell([{ path: "about", loadChildren: "app/about/about.module#AboutModule" }]),
   Route.withShell([{ path: "comments", loadChildren: "app/comment/comment.module#CommentModule" }]),
-
-  // Fallback when no prior route is matched
   { path: "**", redirectTo: "", pathMatch: "full" }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
-  exports: [RouterModule],
-  providers: []
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

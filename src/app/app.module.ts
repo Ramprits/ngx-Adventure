@@ -39,7 +39,6 @@ import { AppRoutingModule } from "./app-routing.module";
     NgProgressModule
   ],
   declarations: [AppComponent],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

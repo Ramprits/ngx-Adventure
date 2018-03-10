@@ -10,13 +10,8 @@
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "baseUrl": "src",
     "paths": {
       "@app/*": ["app/*"],
@@ -25,5 +20,12 @@
   },
   "angularCompilerOptions": {
     "preserveWhitespaces": false
-  }
+  },
+  "noUnusedLocals": true,
+  "noUnusedParameters": true,
+  "noFallthroughCasesInSwitch": true,
+  "noImplicitThis": true,
+  "noImplicitAny": false,
+  "noImplicitReturns": true,
+  "strictNullChecks": true
 }

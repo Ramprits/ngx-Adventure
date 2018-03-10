@@ -1,14 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { CommentService } from "@app/comment/comment.service";
+import { pageAnimation } from "@app/shared/animation/animation.motion";
 
 @Component({
   selector: "app-comment",
   templateUrl: "./comment.component.html",
-  styleUrls: ["./comment.component.scss"]
+  styleUrls: ["./comment.component.scss"],
+  animations: [pageAnimation]
 })
 export class CommentComponent implements OnInit {
   comments: any[];
-  loading: boolean;
+  loading = false;
   constructor(private commentService: CommentService) {}
 
   ngOnInit() {
