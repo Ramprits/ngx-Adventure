@@ -7,18 +7,23 @@
     </button>
     <div id="navbar-menu" class="collapse navbar-collapse float-xs-none" [ngbCollapse]="menuHidden">
       <div class="navbar-nav">
-        <a class="nav-item nav-link text-uppercase" routerLink="/home" routerLinkActive="active">
+        <a class="nav-item nav-link" routerLink="/home" routerLinkActive="active">
           <i class="fas fa-home"></i>
           <span translate>Home</span>
         </a>
-        <a class="nav-item nav-link text-uppercase" routerLink="/about" routerLinkActive="active">
-          <i class="fas fa-question-circle"></i>
+        <a class="nav-item nav-link" routerLink="/about" routerLinkActive="active">
+          <i class="fab fa-phabricator"></i>
           <span translate>About</span>
         </a>
 
-        <a class="nav-item nav-link text-uppercase" routerLink="/comments" routerLinkActive="active">
+        <a class="nav-item nav-link" routerLink="/comments" routerLinkActive="active">
           <i class="fas fa-comments"></i>
           <span translate>Comment</span>
+        </a>
+
+        <a class="nav-item nav-link" routerLink="/customer" routerLinkActive="active">
+          <i class="fas fa-comments"></i>
+          <span translate>Customer</span>
         </a>
 
       </div>

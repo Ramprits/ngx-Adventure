@@ -5,6 +5,7 @@ import { Route } from "@app/core";
 const routes: Routes = [
   Route.withShell([{ path: "about", loadChildren: "app/about/about.module#AboutModule" }]),
   Route.withShell([{ path: "comments", loadChildren: "app/comment/comment.module#CommentModule" }]),
+  Route.withShell([{ path: "customer", loadChildren: "app/customer/customer.module#CustomerModule" }]),
   { path: "**", redirectTo: "", pathMatch: "full" }
 ];
 

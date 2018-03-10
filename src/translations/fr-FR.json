@@ -17,5 +17,6 @@
   "Name": "prénom",
   "Email": "Email",
   "Body": "Corps",
-  "Print": "Impression"
+  "Print": "Impression",
+  "Customer": "Client"
 }
