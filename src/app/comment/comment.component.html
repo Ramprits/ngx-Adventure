@@ -9,7 +9,7 @@
       Print
     </button>
     <p-table [value]="comments" styleClass="table table-bordered table-striped" [loading]="loading" [responsive]="true" [paginator]="true"
-      [rows]="10">
+      [rows]="20">
       <ng-template pTemplate="header">
         <tr class="bg-secondary text-light">
           <th translate>
@@ -24,10 +24,10 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-comment>
-        <tr>
+        <tr class="text-justify">
           <td>{{comment.name}}</td>
           <td>{{comment.email}}</td>
-          <td>{{comment.body}}</td>
+          <td class="text-truncate" style="max-width: 370px;">{{comment.body}}</td>
         </tr>
       </ng-template>
     </p-table>
