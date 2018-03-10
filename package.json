@@ -33,6 +33,8 @@
     "@ng-bootstrap/ng-bootstrap": "^1.0.0",
     "@ngx-translate/core": "^9.0.1",
     "bootstrap": "4.0.0",
+    "ngx-progressbar": "2.1.1",
+    "ngx-toastr": "^8.1.1",
     "core-js": "^2.5.2",
     "lodash": "^4.17.4",
     "primeng": "^5.2.1",

@@ -1,5 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, NavigationEnd, ActivatedRoute } from "@angular/router";
+import {
+  Router,
+  Event,
+  NavigationStart,
+  NavigationEnd,
+  ActivatedRoute,
+  NavigationError,
+  NavigationCancel
+} from "@angular/router";
+
 import { Title } from "@angular/platform-browser";
 import { TranslateService } from "@ngx-translate/core";
 import { merge } from "rxjs/observable/merge";
@@ -7,6 +16,7 @@ import { filter, map, mergeMap } from "rxjs/operators";
 
 import { environment } from "@env/environment";
 import { Logger, I18nService } from "@app/core";
+import { NgProgress } from "ngx-progressbar";
 
 const log = new Logger("App");
 
@@ -21,8 +31,26 @@ export class AppComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private translateService: TranslateService,
-    private i18nService: I18nService
-  ) {}
+    private i18nService: I18nService,
+    public progressService: NgProgress
+  ) {
+    router.events.subscribe((routerEvent: Event) => {
+      this.checkRouterEvent(routerEvent);
+    });
+  }
+  checkRouterEvent(routerEvent: Event): void {
+    if (routerEvent instanceof NavigationStart) {
+      this.progressService.start();
+    }
+
+    if (
+      routerEvent instanceof NavigationEnd ||
+      routerEvent instanceof NavigationCancel ||
+      routerEvent instanceof NavigationError
+    ) {
+      this.progressService.done();
+    }
+  }
 
   ngOnInit() {
     // Setup logger

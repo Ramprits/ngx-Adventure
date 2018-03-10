@@ -4,7 +4,10 @@ import { TableModule } from "primeng/table";
 import { LoaderComponent } from "./loader/loader.component";
 
 @NgModule({
-  imports: [CommonModule, TableModule],
+  imports: [
+    CommonModule,
+    TableModule
+  ],
   declarations: [LoaderComponent],
   exports: [LoaderComponent, TableModule]
 })
