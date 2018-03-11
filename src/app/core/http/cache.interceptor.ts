@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
+import { Injectable } from "@angular/core";
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
+import { Subscriber } from "rxjs/Subscriber";
 
-import { HttpCacheService } from './http-cache.service';
+import { HttpCacheService } from "./http-cache.service";
 
 /**
  * Caches HTTP requests.
@@ -11,10 +11,9 @@ import { HttpCacheService } from './http-cache.service';
  */
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
-
   private forceUpdate = false;
 
-  constructor(private httpCacheService: HttpCacheService) { }
+  constructor(private httpCacheService: HttpCacheService) {}
 
   /**
    * Configures interceptor options
@@ -30,7 +29,7 @@ export class CacheInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (request.method !== 'GET') {
+    if (request.method !== "GET") {
       return next.handle(request);
     }
 
@@ -41,19 +40,17 @@ export class CacheInterceptor implements HttpInterceptor {
         subscriber.next(new HttpResponse(cachedData as Object));
         subscriber.complete();
       } else {
-        next.handle(request)
-          .subscribe(
-            event => {
-              if (event instanceof HttpResponse) {
-                this.httpCacheService.setCacheData(request.urlWithParams, event);
-              }
-              subscriber.next(event);
-            },
-            error => subscriber.error(error),
-            () => subscriber.complete()
-          );
+        next.handle(request).subscribe(
+          event => {
+            if (event instanceof HttpResponse) {
+              this.httpCacheService.setCacheData(request.urlWithParams, event);
+            }
+            subscriber.next(event);
+          },
+          error => subscriber.error(error),
+          () => subscriber.complete()
+        );
       }
     });
   }
-
 }

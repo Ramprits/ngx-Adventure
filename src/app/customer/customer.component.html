@@ -1,0 +1,60 @@
+<div class="container">
+
+    <form [formGroup]="customerForm" (ngSubmit)="Onsave(customerForm.value)">
+        <p-panel header="Customer">
+            <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Name *:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText type="text" formControlName="name" placeholder="Required" />
+                    </div>
+                    <div class="ui-grid-col-4">
+                        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!customerForm.controls['name'].valid&&customerForm.controls['name'].dirty">
+                            <i class="fa fa-close"></i>
+                            Firstname is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Email *:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText type="text" formControlName="email" placeholder="Required" />
+                    </div>
+                    <div class="ui-grid-col-4">
+                        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!customerForm.controls['email'].valid&&customerForm.controls['email'].dirty">
+                            <i class="fa fa-close"></i>
+                            Email is required
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2">
+                        Mobile *:
+                    </div>
+                    <div class="ui-grid-col-6">
+                        <input pInputText type="text" formControlName="mobile" placeholder="Required" />
+                    </div>
+                    <div class="ui-grid-col-4">
+                        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!customerForm.controls['mobile'].valid&&customerForm.controls['mobile'].dirty">
+                            <i class="fa fa-close"></i>
+                            Mobile is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-2"></div>
+                    <div class="ui-grid-col-6">
+                        <button pButton type="submit" label="Submit" [disabled]="customerForm.invalid"></button>
+                    </div>
+                    <div class="ui-grid-col-4"></div>
+                </div>
+            </div>
+        </p-panel>
+    </form>
+</div>

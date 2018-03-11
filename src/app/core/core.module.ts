@@ -17,11 +17,15 @@ import { ApiPrefixInterceptor } from "./http/api-prefix.interceptor";
 import { ErrorHandlerInterceptor } from "./http/error-handler.interceptor";
 import { CacheInterceptor } from "./http/cache.interceptor";
 import { CommentService } from "@app/comment/comment.service";
+import { CustomerService } from "@app/customer/customer.service";
+import { CommentResolveService } from "@app/comment/comment.resolve.service";
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, TranslateModule, NgbModule, RouterModule],
   declarations: [HeaderComponent, ShellComponent],
   providers: [
+    CommentResolveService,
+    CustomerService,
     CommentService,
     AuthenticationService,
     AuthenticationGuard,
