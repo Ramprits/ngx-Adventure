@@ -5,20 +5,21 @@ import { of } from "rxjs/observable/of";
 import { tap, catchError } from "rxjs/operators";
 import { AdventureTrackerError } from "@app/core/adventure.Error";
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { IComment } from "@app/comment/comment";
 
 @Injectable()
 export class CommentService {
-  comments: any[];
+  comments: IComment[];
   constructor(private httpClient: HttpClient) {}
 
-  GetAllComments(): Observable<any[] | AdventureTrackerError> {
+  GetAllComments(): Observable<IComment[] | AdventureTrackerError> {
     if (this.comments) {
       console.log("Called from cached memory ->", new Date());
       return of(this.comments);
     }
     return this.httpClient
       .cache()
-      .get<any[]>(`https://jsonplaceholder.typicode.com/comments`)
+      .get<IComment[]>(`https://jsonplaceholder.typicode.com/comments`)
       .pipe(
         tap(data => {
           console.log(new Date());

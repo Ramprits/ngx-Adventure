@@ -3,6 +3,7 @@ import { CommentService } from "@app/comment/comment.service";
 import { pageAnimation } from "@app/shared/animation/animation.motion";
 import { AdventureTrackerError } from "@app/core/adventure.Error";
 import { ActivatedRoute } from "@angular/router";
+import { IComment } from "@app/comment/comment";
 
 @Component({
   selector: "app-comment",
@@ -11,14 +12,24 @@ import { ActivatedRoute } from "@angular/router";
   animations: [pageAnimation]
 })
 export class CommentComponent implements OnInit {
-  comments: any[] | AdventureTrackerError;
+  cols: any[];
+  comments: IComment[] | AdventureTrackerError;
+  displayDialog: boolean;
+  comment: IComment = {};
+  newComment: boolean;
+  selectedComment: IComment;
   loading = false;
   constructor(private commentService: CommentService, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.cols = [
+      { field: "name", header: "Name" },
+      { field: "email", header: "Email" },
+      { field: "body", header: "Body" }
+    ];
     this.loading = true;
     setTimeout(() => {
-      const resolvedData: any[] | AdventureTrackerError = this.route.snapshot.data["resolvedBooks"];
+      const resolvedData: IComment[] | AdventureTrackerError = this.route.snapshot.data["resolvedBooks"];
 
       if (resolvedData instanceof AdventureTrackerError) {
         console.log(`Dashboard component error: ${resolvedData.friendlyMessage}`);
@@ -28,8 +39,24 @@ export class CommentComponent implements OnInit {
       this.loading = false;
     }, 1000);
   }
-
+  showDialogToAdd() {}
   MyDocumemntPrint() {
     window.print();
+  }
+
+  onRowSelect(event: any) {
+    this.newComment = false;
+    this.comment = this.cloneComment(event.data);
+    console.log(this.comment);
+    this.displayDialog = true;
+  }
+
+  cloneComment(c: IComment): IComment {
+    const comment = {};
+    // tslint:disable-next-line:forin
+    for (const prop in c) {
+      comment[prop] = c[prop];
+    }
+    return comment;
   }
 }

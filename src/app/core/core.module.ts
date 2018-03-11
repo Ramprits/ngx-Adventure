@@ -19,6 +19,7 @@ import { CacheInterceptor } from "./http/cache.interceptor";
 import { CommentService } from "@app/comment/comment.service";
 import { CustomerService } from "@app/customer/customer.service";
 import { CommentResolveService } from "@app/comment/comment.resolve.service";
+import { HeaderInterceptor, LogInterceptor } from "@app/core/http/httpHeader.interceptor";
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, TranslateModule, NgbModule, RouterModule],
@@ -37,6 +38,16 @@ import { CommentResolveService } from "@app/comment/comment.resolve.service";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiPrefixInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LogInterceptor,
       multi: true
     },
     {
