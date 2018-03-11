@@ -1,31 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { CommentService } from "@app/comment/comment.service";
-import { pageAnimation } from "@app/shared/animation/animation.motion";
+import { pageAnimation, triggerAnimation } from "@app/shared/animation/animation.motion";
 import { AdventureTrackerError } from "@app/core/adventure.Error";
 import { ActivatedRoute } from "@angular/router";
 import { IComment } from "@app/comment/comment";
-import { trigger, state, style, animate, transition, query, stagger } from "@angular/animations";
 @Component({
   selector: "app-comment",
   templateUrl: "./comment.component.html",
   styleUrls: ["./comment.component.scss"],
-  animations: [
-    trigger("listStagger", [
-      transition("* <=> *", [
-        query(
-          ":enter",
-          [
-            style({ opacity: 0, transform: "translateY(-10px)" }),
-            stagger("50ms", animate("550ms ease-out", style({ opacity: 1, transform: "translateY(0px)" })))
-          ],
-          { optional: true }
-        ),
-        query(":leave", animate("50ms", style({ opacity: 0 })), {
-          optional: true
-        })
-      ])
-    ])
-  ]
+  animations: [triggerAnimation]
 })
 export class CommentComponent implements OnInit {
   cols: any[];

@@ -1,4 +1,4 @@
-import { trigger, state, style, transition, animate, keyframes } from "@angular/animations";
+import { trigger, state, style, transition, animate, keyframes, query, stagger } from "@angular/animations";
 
 export const pageAnimation = trigger("pageAnimation", [
   state("in", style({ opacity: 1, transform: "translateY(0)" })),
@@ -19,6 +19,23 @@ export const pageAnimation = trigger("pageAnimation", [
     )
   ])
 ]);
+
+export const triggerAnimation = trigger("listStagger", [
+  transition("* <=> *", [
+    query(
+      ":enter",
+      [
+        style({ opacity: 0, transform: "translateY(-10px)" }),
+        stagger("50ms", animate("550ms ease-out", style({ opacity: 1, transform: "translateY(0px)" })))
+      ],
+      { optional: true }
+    ),
+    query(":leave", animate("50ms", style({ opacity: 0 })), {
+      optional: true
+    })
+  ])
+]);
+
 export const tagAnimation = trigger("tagAnimation", [
   state("inactive", style({ transform: "rotateY(0deg)" })),
   state("active", style({ transform: "rotateY(90deg)" })),
