@@ -7,13 +7,11 @@
     "build": "npm run env -s && ng build --prod",
     "start": "npm run env -s && ng serve --ssl true && ng serve --aot --proxy-config proxy.conf.js",
     "serve:sw": "npm run build -s && npx http-server ./dist -p 4200",
-    "lint":
-      "ng lint --type-check && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
+    "lint": "ng lint --type-check && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
     "test": "ng test",
     "test:ci": "npm run lint -s && ng test --single-run --code-coverage",
     "e2e": "npm run env -s && ng e2e",
-    "translations:extract":
-      "ngx-translate-extract --input ./src --output ./src/translations/template.json --format=json --clean -sort --marker extract",
+    "translations:extract": "ngx-translate-extract --input ./src --output ./src/translations/template.json --format=json --clean -sort --marker extract",
     "docs": "hads ./docs -o",
     "env": "ngx-scripts env npm_package_version",
     "generate": "ng generate"
@@ -63,6 +61,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "^1.1.0",
     "karma-junit-reporter": "^1.2.0",
+    "prettier": "^1.11.1",
     "protractor": "~5.3.0",
     "puppeteer": "^1.0.0",
     "stylelint": "~9.1.1",
