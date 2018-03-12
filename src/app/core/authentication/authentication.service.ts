@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/observable/of";
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 export interface Credentials {
   // Customize received credentials here
@@ -14,7 +16,7 @@ export interface LoginContext {
   remember?: boolean;
 }
 
-const credentialsKey = 'credentials';
+const credentialsKey = "credentials";
 
 /**
  * Provides a base for authentication workflow.
@@ -22,7 +24,6 @@ const credentialsKey = 'credentials';
  */
 @Injectable()
 export class AuthenticationService {
-
   private _credentials: Credentials | null;
 
   constructor() {
@@ -41,7 +42,7 @@ export class AuthenticationService {
     // Replace by proper authentication call
     const data = {
       username: context.username,
-      token: '123456'
+      token: "123456"
     };
     this.setCredentials(data, context.remember);
     return of(data);
@@ -91,5 +92,40 @@ export class AuthenticationService {
       localStorage.removeItem(credentialsKey);
     }
   }
+}
 
+@Injectable()
+export class AuthService {
+  constructor(private httpClient: HttpClient, private router: Router) {}
+
+  get isAuthenticated() {
+    return !!localStorage.getItem("token");
+  }
+  register(credentials: void) {
+    return this.httpClient.post<any>(`https://localhost:44328/api/Accounts`, credentials).subscribe(
+      res => {
+        this.authenticated(res);
+      },
+      err => {
+        console.log("Unable to register. You may be already registered user.", err);
+      }
+    );
+  }
+  login(credentials: void) {
+    return this.httpClient.post<any>(`https://localhost:44328/api/Accounts/login`, credentials).subscribe(
+      res => {
+        this.authenticated(res);
+      },
+      err => {
+        console.log("Unable to login. You may be not registered user.", err);
+      }
+    );
+  }
+  authenticated(res: any) {
+    localStorage.setItem("token", res);
+    this.router.navigate(["/"]);
+  }
+  logout() {
+    localStorage.removeItem("token");
+  }
 }
